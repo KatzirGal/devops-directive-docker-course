@@ -1,4 +1,4 @@
-FROM golang:1.19-buster as build
+FROM golang:1.19-buster AS build
 
 WORKDIR /app
 
@@ -28,6 +28,8 @@ ENV GIN_MODE release
 COPY --from=build /etc/passwd /etc/passwd
 
 COPY --from=build /app/api-golang api-golang
+
+USER nonoroot
 
 EXPOSE 8080
 
